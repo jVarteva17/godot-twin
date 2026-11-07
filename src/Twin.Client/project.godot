@@ -1,0 +1,23 @@
+; Godot project file. Open this folder (src/Twin.Client) with Godot 4.7.2 .NET.
+
+config_version=5
+
+[application]
+
+config/name="Twin Client"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=800
+
+[dotnet]
+
+project/assembly_name="Twin.Client"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

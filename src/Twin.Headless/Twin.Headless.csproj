@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Runs the simulation without any graphics: smoke tests in CI, batch runs, a future server. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Twin.Headless</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Twin.Sim/Twin.Sim.csproj" />
+  </ItemGroup>
+</Project>

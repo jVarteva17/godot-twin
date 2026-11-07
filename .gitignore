@@ -1,0 +1,23 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+.idea/
+*.DotSettings.user
+TestResults/
+
+# Godot
+.godot/
+.import/
+src/Twin.Client/*.sln
+export_presets.cfg
+*.translation
+
+# Claude Code local state (phase marker, hook counters, personal settings)
+.claude/state/
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db

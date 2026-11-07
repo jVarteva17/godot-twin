@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(./dev test:*)",
+      "Bash(./dev check)",
+      "Bash(./dev format)",
+      "Bash(./dev phase)",
+      "Bash(./dev run:*)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet test:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ],
+    "deny": [
+      "Bash(./dev phase spec)",
+      "Bash(./dev phase implement)",
+      "Bash(git push:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "dotnet run \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.cs\"" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write|NotebookEdit|Bash",
+        "hooks": [
+          { "type": "command", "command": "dotnet run \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard.cs\"", "timeout": 60 }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "dotnet run \"$CLAUDE_PROJECT_DIR/.claude/hooks/verify.cs\"", "timeout": 600 }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "solution": {
+    "path": "Twin.sln",
+    "projects": [
+      "src\\Twin.Sim\\Twin.Sim.csproj",
+      "src\\Twin.Headless\\Twin.Headless.csproj",
+      "tests\\Twin.Testing\\Twin.Testing.csproj",
+      "tests\\Twin.Sim.Tests\\Twin.Sim.Tests.csproj",
+      "tests\\Twin.Scenarios.Tests\\Twin.Scenarios.Tests.csproj",
+      "tests\\Twin.Architecture.Tests\\Twin.Architecture.Tests.csproj"
+    ]
+  }
+}

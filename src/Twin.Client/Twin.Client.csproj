@@ -1,0 +1,16 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2">
+  <!--
+    The Godot client: rendering, input and UI only. It reads simulation state and issues orders;
+    it never contains game rules (docs/adr/0002-simulation-presentation-separation.md).
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>Twin.Client</RootNamespace>
+    <!-- Godot's SDK adds its own versioned package references, which central package management rejects. -->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Twin.Sim/Twin.Sim.csproj" />
+  </ItemGroup>
+</Project>

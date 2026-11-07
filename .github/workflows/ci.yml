@@ -1,0 +1,50 @@
+# The universal gate: runs the same checks as ./dev check, for every change, whoever or whatever wrote it.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: build and test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Consider pinning actions to commit SHAs for supply-chain safety (ADR 0006).
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Twin.sln
+
+      - name: Check formatting
+        run: dotnet format Twin.Core.slnf --verify-no-changes --no-restore
+
+      - name: Build (including Godot client C#)
+        run: dotnet build Twin.sln --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test Twin.Core.slnf --no-build --configuration Release --logger trx --results-directory TestResults
+
+      - name: Headless smoke run
+        run: dotnet run --project src/Twin.Headless --no-build --configuration Release -- --seconds 60
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.os }}
+          path: TestResults

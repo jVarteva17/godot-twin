@@ -1,0 +1,18 @@
+<Project>
+  <!-- Shared build settings for every project in the repository. See docs/adr/0006-code-quality-gates.md -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <Deterministic>true</Deterministic>
+    <!-- NuGet vulnerability audit stays on; warnings become errors below. -->
+    <NuGetAudit>true</NuGetAudit>
+  </PropertyGroup>
+
+  <!-- The Godot client is excluded: Godot's generated code is outside our control. -->
+  <PropertyGroup Condition="'$(MSBuildProjectName)' != 'Twin.Client'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>

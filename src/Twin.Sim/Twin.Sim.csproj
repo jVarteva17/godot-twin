@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The simulation core. Hard rules (enforced by tests/Twin.Architecture.Tests):
+      * no reference to Godot or any engine/UI library
+      * no wall-clock time, no System.Random, no threads
+    See docs/adr/0002-simulation-presentation-separation.md
+  -->
+  <PropertyGroup>
+    <RootNamespace>Twin.Sim</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Twin.Sim.Tests" />
+  </ItemGroup>
+</Project>
