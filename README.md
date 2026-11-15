@@ -12,7 +12,7 @@ Git with [Git LFS](https://git-lfs.com), and — only for the visual client —
 
 ```sh
 git lfs install
-./dev setup          # Windows: dev setup
+./dev setup         # Windows: dev setup
 ```
 
 `./dev setup` checks prerequisites, builds everything and runs all tests. The simulation and its tests
